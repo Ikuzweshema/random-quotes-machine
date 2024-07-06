@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import qoutes from "./assets/qoutes.json";
 import { FaQuoteLeft, FaQuoteRight, FaTwitter } from "react-icons/fa";
