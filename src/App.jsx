@@ -3,14 +3,16 @@ import "./App.css";
 import qoutes from "./assets/qoutes.json";
 import { FaQuoteLeft, FaQuoteRight, FaTwitter } from "react-icons/fa";
 function App() {
-  const [qoute, setQoute] = useState(getRandomQoute());
+  const [quote, setQuote] = useState(getRandomQoute());
   const [randomColor, setRandomColor] = useState(getRandomColor());
+  const encodeQuote = encodeURIComponent(`${quote.quote}\n- ${quote.author}`);
+  const twitterPostUrl = `https://x.com/intent/post?text=${encodeQuote}`
   function getRandomQoute() {
     return qoutes[Math.floor(Math.random() * qoutes.length)];
   }
   function changeQoute() {
     setRandomColor(getRandomColor());
-    setQoute(getRandomQoute());
+    setQuote(getRandomQoute());
   }
   function getRandomColor() {
     const red = Math.floor(Math.random() * 128);
@@ -26,15 +28,15 @@ function App() {
           <h2 id="text">
             {" "}
             <FaQuoteLeft size={30} style={{ marginLeft: "10px" }} />
-          {"  "}  {qoute.quote} {"  "}
+          {"  "}  {quote.quote} {"  "}
             <FaQuoteRight size={30} style={{ marginRight: "10px" }} />
           </h2>
 
-          <h4 id=" author">{qoute.author}</h4>
+          <h4 id=" author">{quote.author}</h4>
         </div>
         <div className="buttons">
           <a
-            href="twitter.com/intent/tweet"
+            href={twitterPostUrl}
             style={{ backgroundColor: randomColor }}
             color="white"
           >
